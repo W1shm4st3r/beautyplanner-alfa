@@ -17,7 +17,7 @@
     <div class="card-body">
       <form method="post" role="form" th:action="@{/cosmetic}" th:object="${cosmetic}">
         <div class="form-group mb-3">
-          <label class="form-label">Name</label>
+          <label class="form-label">Name:</label>
           <input class="form-control"
                  id="name"
                  name="name"
@@ -26,7 +26,7 @@
         </div>
         <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
         <div class="form-group mb-3">
-          <label class="form-label">Price</label>
+          <label class="form-label">Price:</label>
           <input class="form-control"
                  id="price"
                  name="price"
@@ -35,12 +35,16 @@
           <p th:if="${#fields.hasErrors('price')}" class="text-danger" th:errors="*{price}"></p>
         </div>
         <div class="form-group mb-3">
+          <label class="form-label">Destination:</label>
           <select name="destination">
             <option th:each="destination : ${T(git.w1shm4st3r.beautyplanner.model.enums.CosmeticDestination).values()}"
                     th:value="${destination}"
                     th:text="${destination.getDestination()}">
             </option>
           </select>
+        </div>
+        <div class="form-group mb-3">
+          <label class="form-label">Type:</label>
           <select name="type">
             <option th:each="type : ${T(git.w1shm4st3r.beautyplanner.model.enums.CosmeticType).values()}"
                     th:value="${type}"
@@ -49,7 +53,7 @@
           </select>
         </div>
         <div class="form-group mb-3">
-          <label class="form-label">Opening date</label>
+          <label class="form-label">Opening date:</label>
           <input class="form-control"
                  id="openingDate"
                  name="openingDate"
@@ -58,7 +62,7 @@
 <!--          <p th:if="${#fields.hasErrors('date')}" class="text-danger" th:errors="*{date}"></p>-->
         </div>
         <div class="form-group mb-3">
-          <label class="form-label">Validity term</label>
+          <label class="form-label">Validity term:</label>
           <input class="form-control"
                  id="validityTerm"
                  name="openingDate"
@@ -67,7 +71,7 @@
           <!--          <p th:if="${#fields.hasErrors('date')}" class="text-danger" th:errors="*{date}"></p>-->
         </div>
         <div class="form-group mb-3">
-          <label class="form-label">Rate</label>
+          <label class="form-label">Rate:</label>
           <input class="form-control"
                  id="rate"
                  name="rate"
