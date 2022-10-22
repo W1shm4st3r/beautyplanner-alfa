@@ -7,5 +7,5 @@ Used technologies:
   #Docker
   #MySQL database in docker container
   #Thymeleaf
-  #HTML 5
-  #Bootstrap v.5
+  #HTML5
+  #Bootstrap5
