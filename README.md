@@ -9,3 +9,5 @@ Used technologies:
   #Thymeleaf
   #HTML5
   #Bootstrap5
+  #Maven
+  #Hibernate
