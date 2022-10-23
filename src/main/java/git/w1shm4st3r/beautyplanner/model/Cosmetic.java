@@ -52,4 +52,7 @@ public class Cosmetic {
 
     @Column(name = "is_used_up")
     private Boolean isUsedUp = false;
+
+    @Column(name = "date_of_using_up")
+    private LocalDate dateOfUsingUp;
 }

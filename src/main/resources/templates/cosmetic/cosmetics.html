@@ -19,6 +19,7 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Applications</th>
             <th>Price</th>
             <th>Destination</th>
             <th>Type</th>
@@ -32,7 +33,11 @@
         <tr th:each="cosmetic, cosmeticStat : ${cosmetics}">
             <td th:text="${cosmeticStat.count}"></td>
             <td th:text="${cosmetic.name}"></td>
-            <td th:text="${cosmetic.applicationsNumber}"></td>
+            <td>
+                <a th:text="${cosmetic.applicationsNumber}"></a>
+                <a class="btn btn-primary" th:href="@{/cosmetics/{cosmeticId}/increaseApplications(cosmeticId=${cosmetic.id})}">+</a>
+                <a class="btn btn-danger" th:href="@{/cosmetics/{cosmeticId}/decreaseApplications(cosmeticId=${cosmetic.id})}">-</a>
+            </td>
             <td th:text="${cosmetic.price}"></td>
             <td th:text="${cosmetic.destination.getDestination()}"></td>
             <td th:text="${cosmetic.type.getType()}"></td>
@@ -43,7 +48,8 @@
                 <a class="btn btn-primary" th:href="@{/cosmetics/{cosmeticId}/edit(cosmeticId=${cosmetic.id})}">Edit</a>
                 <a class="btn btn-danger" th:href="@{/cosmetics/{cosmeticId}/delete(cosmeticId=${cosmetic.id})}">Delete</a>
                 <a class="btn btn-info" th:href="@{/cosmetics/{cosmeticId}/view(cosmeticId=${cosmetic.id})}">View</a>
-                <a class="btn btn-success" th:href="@{/cosmetics/{cosmeticId}/addToFavourites(cosmeticId=${cosmetic.id})}">Add to favourites</a>
+                <a class="btn btn-success" th:href="@{/cosmetics/{cosmeticId}/addToFavourites(cosmeticId=${cosmetic.id})}">Favourites</a>
+                <a class="btn btn-secondary" th:href="@{/cosmetics/{cosmeticId}/addToUsedUp(cosmeticId=${cosmetic.id})}">Used up</a>
             </td>
         </tr>
         </tbody>

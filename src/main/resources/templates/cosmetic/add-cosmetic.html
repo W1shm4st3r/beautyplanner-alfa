@@ -57,18 +57,16 @@
           <input class="form-control"
                  id="openingDate"
                  name="openingDate"
-                 placeholder="Enter opening date"
-                 type="date" th:field="*{openingDate}">
-<!--          <p th:if="${#fields.hasErrors('date')}" class="text-danger" th:errors="*{date}"></p>-->
+                 placeholder="dd.MM.yyyy"
+                 type="text" th:field="*{openingDate}">
         </div>
         <div class="form-group mb-3">
           <label class="form-label">Validity term:</label>
           <input class="form-control"
                  id="validityTerm"
-                 name="openingDate"
-                 placeholder="Enter opening date"
-                 type="date" th:field="*{validityTerm}">
-          <p th:if="${#fields.hasErrors('validityTerm')}" class="text-danger" th:errors="*{date}"></p>
+                 name="validityTerm"
+                 placeholder="dd.MM.yyyy"
+                 type="text" th:field="*{validityTerm}">
         </div>
         <div class="form-group mb-3">
           <label class="form-label">Rate:</label>

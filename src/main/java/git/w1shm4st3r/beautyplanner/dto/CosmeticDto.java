@@ -27,4 +27,5 @@ public class CosmeticDto {
     private Integer applicationsNumber = 0;
     private Boolean isFavourite = false;
     private Boolean isUsedUp = false;
+    private LocalDate dateOfUsingUp;
 }

@@ -31,16 +31,19 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
         Cosmetic cosmetic = Cosmetic.builder()
                 .name("Płyn do mycia")
                 .price(10.99)
+                .applicationsNumber(0)
                 .destination(CosmeticDestination.BODY)
                 .type(CosmeticType.CLEANER)
                 .openingDate(LocalDate.now())
                 .validityTerm(LocalDate.of(2023, 10, 1))
                 .rate(8.5)
                 .isFavourite(false)
+                .isUsedUp(false)
                 .build();
 
         Cosmetic cosmetic1 = Cosmetic.builder()
                 .name("Krem pod oczy")
+                .applicationsNumber(0)
                 .price(14.88)
                 .destination(CosmeticDestination.FACE)
                 .type(CosmeticType.EYECREAM)
@@ -48,10 +51,12 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .validityTerm(LocalDate.of(2023, 10, 1))
                 .rate(6.5)
                 .isFavourite(true)
+                .isUsedUp(false)
                 .build();
 
         Cosmetic cosmetic2 = Cosmetic.builder()
                 .name("Maseczka")
+                .applicationsNumber(0)
                 .price(21.37)
                 .destination(CosmeticDestination.FACE)
                 .type(CosmeticType.MASK)
@@ -59,10 +64,12 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .validityTerm(LocalDate.of(2023, 10, 1))
                 .rate(9.37)
                 .isFavourite(false)
+                .isUsedUp(false)
                 .build();
 
         Cosmetic cosmetic3 = Cosmetic.builder()
                 .name("Szampon")
+                .applicationsNumber(0)
                 .price(49.99)
                 .destination(CosmeticDestination.HAIR)
                 .type(CosmeticType.SHAMPOO)
@@ -70,6 +77,7 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .validityTerm(LocalDate.of(2023, 10, 1))
                 .rate(8.0)
                 .isFavourite(true)
+                .isUsedUp(false)
                 .build();
 
 

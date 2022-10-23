@@ -9,6 +9,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.data.domain.Sort.Direction.ASC;
@@ -36,7 +38,14 @@ public class CosmeticServiceImpl implements CosmeticService {
 
     @Override
     public List<Cosmetic> getAllCosmeticsSortedByType() {
-        return cosmeticRepository.findAll(Sort.by(ASC, "type"));
+        List<Cosmetic> cosmetics = cosmeticRepository.findAll(Sort.by(ASC, "type"));
+        List<Cosmetic> currentlyUsed = new ArrayList<>();
+        for (Cosmetic cosmetic : cosmetics) {
+            if (!cosmetic.getIsUsedUp()) {
+                currentlyUsed.add(cosmetic);
+            }
+        }
+        return currentlyUsed;
     }
 
     @Override
@@ -67,6 +76,55 @@ public class CosmeticServiceImpl implements CosmeticService {
     public void addCosmetic(CosmeticDto cosmeticDto) {
         Cosmetic cosmetic = CosmeticMapper.mapToCosmetic(cosmeticDto);
         cosmeticRepository.save(cosmetic);
+    }
+
+    @Override
+    public void addToUsedUp(Long cosmeticId) {
+        Cosmetic usedUpCosmetic = cosmeticRepository.findCosmeticById(cosmeticId);
+        usedUpCosmetic.setIsUsedUp(true);
+        usedUpCosmetic.setDateOfUsingUp(LocalDate.now());
+        cosmeticRepository.save(usedUpCosmetic);
+    }
+
+    @Override
+    public List<Cosmetic> getUsedUp() {
+        List<Cosmetic> cosmetics = cosmeticRepository.findAll();
+        List<Cosmetic> usedUpCosmetics = new ArrayList<>();
+        for (Cosmetic cosmetic : cosmetics) {
+            if (cosmetic.getIsUsedUp()) {
+                usedUpCosmetics.add(cosmetic);
+            }
+        }
+        return usedUpCosmetics;
+    }
+
+    @Override
+    public void removeFromUsedUp(Long cosmeticId) {
+        Cosmetic cosmeticToRemove = cosmeticRepository.findCosmeticById(cosmeticId);
+        cosmeticToRemove.setIsUsedUp(false);
+        cosmeticToRemove.setDateOfUsingUp(null);
+        cosmeticRepository.save(cosmeticToRemove);
+    }
+
+    @Override
+    public void increaseApplications(Long cosmeticId) {
+        Cosmetic cosmetic = cosmeticRepository.findCosmeticById(cosmeticId);
+        cosmetic.setApplicationsNumber(cosmetic.getApplicationsNumber() + 1);
+        cosmeticRepository.save(cosmetic);
+    }
+
+    @Override
+    public void decreaseApplications(Long cosmeticId) {
+        Cosmetic cosmetic = cosmeticRepository.findCosmeticById(cosmeticId);
+        if (cosmetic.getApplicationsNumber() > 0) {
+            cosmetic.setApplicationsNumber(cosmetic.getApplicationsNumber() - 1);
+            cosmeticRepository.save(cosmetic);
+        }
+    }
+
+    @Override
+    public void updateCosmetic(CosmeticDto cosmetic) {
+        cosmeticRepository.save(CosmeticMapper.mapToCosmetic(cosmetic));
     }
 
 //    public Cosmetic addCosmetic(Cosmetic cosmetic) {

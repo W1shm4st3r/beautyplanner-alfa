@@ -14,4 +14,10 @@ public interface CosmeticService {
     void removeFromFavourites(Long cosmeticId);
     void deleteCosmetic(Long cosmeticId);
     void addCosmetic(CosmeticDto cosmeticDto);
+    void addToUsedUp(Long cosmeticId);
+    List<Cosmetic> getUsedUp();
+    void removeFromUsedUp(Long cosmeticId);
+    void increaseApplications(Long cosmeticId);
+    void decreaseApplications(Long cosmeticId);
+    void updateCosmetic(CosmeticDto cosmetic);
 }

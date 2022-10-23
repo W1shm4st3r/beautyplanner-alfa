@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Beauty Planner · Used Up</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<header th:replace="~{index :: header}"></header>
+</br></br></br>
+<div class="container">
+  <div class="row">
+    <h1>Used Up</h1>
+  </div>
+  </br>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Applications</th>
+      <th>Price</th>
+      <th>Destination</th>
+      <th>Type</th>
+      <th>Rate</th>
+      <th>Date of using up</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cosmetic, cosmeticStat : ${usedUpCosmetics}">
+      <td th:text="${cosmeticStat.count}"></td>
+      <td th:text="${cosmetic.name}"></td>
+      <td th:text="${cosmetic.applicationsNumber}"></td>
+      <td th:text="${cosmetic.price}"></td>
+      <td th:text="${cosmetic.destination.getDestination()}"></td>
+      <td th:text="${cosmetic.type.getType()}"></td>
+      <td th:text="${cosmetic.rate}"></td>
+      <td th:text="${cosmetic.dateOfUsingUp}"></td>
+      <td>
+        <a class="btn btn-primary" th:href="@{/usedUp/{cosmeticId}/edit(cosmeticId=${cosmetic.id})}">Edit</a>
+        <a class="btn btn-danger" th:href="@{/usedUp/{cosmeticId}/delete(cosmeticId=${cosmetic.id})}">Delete</a>
+        <a class="btn btn-info" th:href="@{/usedUp/{cosmeticId}/view(cosmeticId=${cosmetic.id})}">View</a>
+        <a class="btn btn-success" th:href="@{/usedUp/{cosmeticId}/addToFavourites(cosmeticId=${cosmetic.id})}">Favourites</a>
+        <a class="btn btn-secondary" th:href="@{/usedUp/{cosmeticId}/removeFromUsedUp(cosmeticId=${cosmetic.id})}">In use</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

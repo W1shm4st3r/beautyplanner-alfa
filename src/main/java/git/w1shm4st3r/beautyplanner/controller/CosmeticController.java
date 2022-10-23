@@ -1,6 +1,7 @@
 package git.w1shm4st3r.beautyplanner.controller;
 
 import git.w1shm4st3r.beautyplanner.dto.CosmeticDto;
+import git.w1shm4st3r.beautyplanner.mapper.CosmeticMapper;
 import git.w1shm4st3r.beautyplanner.model.Cosmetic;
 import git.w1shm4st3r.beautyplanner.service.CosmeticService;
 import git.w1shm4st3r.beautyplanner.service.impl.CosmeticServiceImpl;
@@ -54,6 +55,47 @@ public class CosmeticController {
     @GetMapping("/cosmetics/{cosmeticId}/delete")
     public String deleteCosmetic(@PathVariable("cosmeticId") Long cosmeticId) {
         cosmeticService.deleteCosmetic(cosmeticId);
+        return "redirect:/cosmetics";
+    }
+
+    @GetMapping("/cosmetics/{cosmeticId}/addToUsedUp")
+    public String addToUsedUp(@PathVariable("cosmeticId") Long cosmeticId) {
+        cosmeticService.addToUsedUp(cosmeticId);
+        return "redirect:/cosmetics";
+    }
+
+    @GetMapping("/cosmetics/{cosmeticId}/edit")
+    public String editCosmetic(@PathVariable("cosmeticId") Long cosmeticId, Model model) {
+        Cosmetic cosmetic = cosmeticService.getCosmeticById(cosmeticId);
+        model.addAttribute("cosmetic", cosmetic);
+        return "cosmetic/edit-cosmetic";
+    }
+
+    @PostMapping("/cosmetics/{cosmeticId}/update")
+    public String updateCosmetic(@PathVariable("cosmeticId") Long cosmeticId, @Valid @ModelAttribute CosmeticDto cosmetic,
+                                 BindingResult result, Model model) {
+        Cosmetic cosmeticToEdit = cosmeticService.getCosmeticById(cosmeticId);
+        if (result.hasErrors()) {
+            model.addAttribute("cosmetic", cosmetic);
+            return "cosmetic/edit-cosmetic";
+        }
+        cosmetic.setId(cosmeticId);
+        cosmetic.setIsFavourite(cosmeticToEdit.getIsFavourite());
+        cosmetic.setIsUsedUp(cosmeticToEdit.getIsUsedUp());
+        cosmetic.setApplicationsNumber(cosmeticToEdit.getApplicationsNumber());
+        cosmeticService.updateCosmetic(cosmetic);
+        return "redirect:/cosmetics";
+    }
+
+    @GetMapping("/cosmetics/{cosmeticId}/increaseApplications")
+    public String increaseApplications(@PathVariable("cosmeticId") Long cosmeticId) {
+        cosmeticService.increaseApplications(cosmeticId);
+        return "redirect:/cosmetics";
+    }
+
+    @GetMapping("/cosmetics/{cosmeticId}/decreaseApplications")
+    public String decreaseApplications(@PathVariable("cosmeticId") Long cosmeticId) {
+        cosmeticService.decreaseApplications(cosmeticId);
         return "redirect:/cosmetics";
     }
 

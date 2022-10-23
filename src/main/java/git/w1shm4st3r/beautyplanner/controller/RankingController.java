@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,7 +22,13 @@ public class RankingController {
     @GetMapping("ranking")
     public String displayRanking(Model model) {
         List<Cosmetic> cosmeticsSorted = cosmeticService.getAllCosmeticsSortedByRate();
-        model.addAttribute("cosmeticsSorted", cosmeticsSorted);
+        List<Cosmetic> cosmeticsRanked = new ArrayList<>();
+        for (Cosmetic cosmetic : cosmeticsSorted) {
+            if (cosmetic.getRate() != null) {
+                cosmeticsRanked.add(cosmetic);
+            }
+        }
+        model.addAttribute("cosmeticsRanked", cosmeticsRanked);
         return "cosmetic/ranking";
     }
 }
