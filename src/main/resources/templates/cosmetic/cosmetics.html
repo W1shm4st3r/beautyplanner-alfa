@@ -41,13 +41,13 @@
             <td th:text="${cosmetic.price}"></td>
             <td th:text="${cosmetic.destination.getDestination()}"></td>
             <td th:text="${cosmetic.type.getType()}"></td>
-            <td th:text="${cosmetic.openingDate}"></td>
+            <td th:text="${cosmetic.openingDate} ? ${cosmetic.openingDate} : 'Not opened'"></td>
             <td th:text="${cosmetic.validityTerm}"></td>
             <td th:text="${cosmetic.rate}"></td>
             <td>
                 <a class="btn btn-primary" th:href="@{/cosmetics/{cosmeticId}/edit(cosmeticId=${cosmetic.id})}">Edit</a>
                 <a class="btn btn-danger" th:href="@{/cosmetics/{cosmeticId}/delete(cosmeticId=${cosmetic.id})}">Delete</a>
-                <a class="btn btn-info" th:href="@{/cosmetics/{cosmeticId}/view(cosmeticId=${cosmetic.id})}">View</a>
+                <a class="btn btn-info" th:href="@{/cosmetics/{cosmeticId}/cosmeticDetails(cosmeticId=${cosmetic.id})}">View</a>
                 <a class="btn btn-success" th:href="@{/cosmetics/{cosmeticId}/addToFavourites(cosmeticId=${cosmetic.id})}">Favourites</a>
                 <a class="btn btn-secondary" th:href="@{/cosmetics/{cosmeticId}/addToUsedUp(cosmeticId=${cosmetic.id})}">Used up</a>
             </td>

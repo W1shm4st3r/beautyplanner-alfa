@@ -88,7 +88,7 @@ public class CosmeticServiceImpl implements CosmeticService {
 
     @Override
     public List<Cosmetic> getUsedUp() {
-        List<Cosmetic> cosmetics = cosmeticRepository.findAll();
+        List<Cosmetic> cosmetics = cosmeticRepository.findAll(Sort.by(DESC, "dateOfUsingUp"));
         List<Cosmetic> usedUpCosmetics = new ArrayList<>();
         for (Cosmetic cosmetic : cosmetics) {
             if (cosmetic.getIsUsedUp()) {

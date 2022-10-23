@@ -29,6 +29,6 @@ public class RankingController {
             }
         }
         model.addAttribute("cosmeticsRanked", cosmeticsRanked);
-        return "cosmetic/ranking";
+        return "ranking";
     }
 }

@@ -15,7 +15,7 @@
             <h2 class="text-center">Edit Cosmetic</h2>
         </div>
         <div class="card-body">
-            <form method="post" role="form" th:action="@{/cosmetics/{cosmeticId}/update(cosmeticId=${cosmetic.id})}"
+            <form method="post" role="form" th:action="@{/usedUp/{cosmeticId}/update(cosmeticId=${cosmetic.id})}"
                   th:object="${cosmetic}">
                 <div class="form-group mb-3">
                     <label class="form-label">Name:</label>
@@ -68,6 +68,14 @@
                            name="validityTerm"
                            placeholder="dd.MM.yyyy"
                            type="text" th:field="*{validityTerm}">
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label">Date of use up:</label>
+                    <input class="form-control"
+                           id="dateOfUsingUp"
+                           name="dateOfUsingUp"
+                           placeholder="dd.MM.yyyy"
+                           type="text" th:field="*{dateOfUsingUp}">
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Rate:</label>

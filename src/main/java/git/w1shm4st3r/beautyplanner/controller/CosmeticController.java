@@ -8,7 +8,10 @@ import git.w1shm4st3r.beautyplanner.service.impl.CosmeticServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -82,7 +85,6 @@ public class CosmeticController {
         cosmetic.setId(cosmeticId);
         cosmetic.setIsFavourite(cosmeticToEdit.getIsFavourite());
         cosmetic.setIsUsedUp(cosmeticToEdit.getIsUsedUp());
-        cosmetic.setApplicationsNumber(cosmeticToEdit.getApplicationsNumber());
         cosmeticService.updateCosmetic(cosmetic);
         return "redirect:/cosmetics";
     }
@@ -97,6 +99,13 @@ public class CosmeticController {
     public String decreaseApplications(@PathVariable("cosmeticId") Long cosmeticId) {
         cosmeticService.decreaseApplications(cosmeticId);
         return "redirect:/cosmetics";
+    }
+
+    @GetMapping("/cosmetics/{cosmeticId}/cosmeticDetails")
+    public String displayCosmeticDetails(@PathVariable("cosmeticId") Long cosmeticId, Model model) {
+        CosmeticDto cosmetic = CosmeticMapper.mapToCosmeticDto(cosmeticService.getCosmeticById(cosmeticId));
+        model.addAttribute("cosmetic", cosmetic);
+        return "cosmetic/view-cosmetic";
     }
 
 }

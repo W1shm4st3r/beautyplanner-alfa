@@ -24,7 +24,7 @@
       <th>Destination</th>
       <th>Type</th>
       <th>Rate</th>
-      <th>Date of using up</th>
+      <th>Date of use up</th>
       <th>Actions</th>
     </tr>
     </thead>
@@ -32,7 +32,11 @@
     <tr th:each="cosmetic, cosmeticStat : ${usedUpCosmetics}">
       <td th:text="${cosmeticStat.count}"></td>
       <td th:text="${cosmetic.name}"></td>
-      <td th:text="${cosmetic.applicationsNumber}"></td>
+      <td>
+        <a th:text="${cosmetic.applicationsNumber}"></a>
+        <a class="btn btn-primary" th:href="@{/usedUp/{cosmeticId}/increaseApplications(cosmeticId=${cosmetic.id})}">+</a>
+        <a class="btn btn-danger" th:href="@{/usedUp/{cosmeticId}/decreaseApplications(cosmeticId=${cosmetic.id})}">-</a>
+      </td>
       <td th:text="${cosmetic.price}"></td>
       <td th:text="${cosmetic.destination.getDestination()}"></td>
       <td th:text="${cosmetic.type.getType()}"></td>
