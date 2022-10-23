@@ -1,6 +1,7 @@
 package git.w1shm4st3r.beautyplanner.controller;
 
 import git.w1shm4st3r.beautyplanner.dto.CosmeticDto;
+import git.w1shm4st3r.beautyplanner.mapper.CosmeticMapper;
 import git.w1shm4st3r.beautyplanner.model.Cosmetic;
 import git.w1shm4st3r.beautyplanner.service.CosmeticService;
 import org.springframework.stereotype.Controller;
@@ -80,6 +81,13 @@ public class UsedUpController {
     public String decreaseApplications(@PathVariable("cosmeticId") Long cosmeticId) {
         cosmeticService.decreaseApplications(cosmeticId);
         return "redirect:/usedUp";
+    }
+
+    @GetMapping("/usedUp/{cosmeticId}/cosmeticDetails")
+    public String displayCosmeticDetails(@PathVariable("cosmeticId") Long cosmeticId, Model model) {
+        CosmeticDto cosmetic = CosmeticMapper.mapToCosmeticDto(cosmeticService.getCosmeticById(cosmeticId));
+        model.addAttribute("cosmetic", cosmetic);
+        return "cosmetic/view-cosmetic";
     }
 
 }
