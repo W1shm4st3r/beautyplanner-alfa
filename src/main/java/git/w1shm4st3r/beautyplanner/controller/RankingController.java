@@ -2,6 +2,7 @@ package git.w1shm4st3r.beautyplanner.controller;
 
 import git.w1shm4st3r.beautyplanner.model.Cosmetic;
 import git.w1shm4st3r.beautyplanner.service.CosmeticService;
+import git.w1shm4st3r.beautyplanner.service.impl.CosmeticServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ public class RankingController {
 
     private final CosmeticService cosmeticService;
 
-    public RankingController(CosmeticService cosmeticService) {
+    public RankingController(CosmeticServiceImpl cosmeticService) {
         this.cosmeticService = cosmeticService;
     }
 

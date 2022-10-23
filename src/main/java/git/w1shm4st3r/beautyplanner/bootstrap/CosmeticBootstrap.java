@@ -36,6 +36,7 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .openingDate(LocalDate.now())
                 .validityTerm(LocalDate.of(2023, 10, 1))
                 .rate(8.5)
+                .isFavourite(false)
                 .build();
 
         Cosmetic cosmetic1 = Cosmetic.builder()
@@ -46,6 +47,7 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .openingDate(LocalDate.now())
                 .validityTerm(LocalDate.of(2023, 10, 1))
                 .rate(6.5)
+                .isFavourite(true)
                 .build();
 
         Cosmetic cosmetic2 = Cosmetic.builder()
@@ -56,6 +58,7 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .openingDate(LocalDate.now())
                 .validityTerm(LocalDate.of(2023, 10, 1))
                 .rate(9.37)
+                .isFavourite(false)
                 .build();
 
         Cosmetic cosmetic3 = Cosmetic.builder()
@@ -66,6 +69,7 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .openingDate(LocalDate.now())
                 .validityTerm(LocalDate.of(2023, 10, 1))
                 .rate(8.0)
+                .isFavourite(true)
                 .build();
 
 
