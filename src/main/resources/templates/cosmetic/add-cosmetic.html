@@ -15,7 +15,7 @@
       <h2 class="text-center">New Cosmetic</h2>
     </div>
     <div class="card-body">
-      <form method="post" role="form" th:action="@{/cosmetic}" th:object="${cosmetic}">
+      <form method="post" role="form" th:action="@{/cosmetics}" th:object="${cosmetic}">
         <div class="form-group mb-3">
           <label class="form-label">Name:</label>
           <input class="form-control"
@@ -31,7 +31,7 @@
                  id="price"
                  name="price"
                  placeholder="Enter price"
-                 type="number" th:field="*{price}">
+                 type="number" step="0.01" th:field="*{price}">
           <p th:if="${#fields.hasErrors('price')}" class="text-danger" th:errors="*{price}"></p>
         </div>
         <div class="form-group mb-3">
@@ -68,7 +68,7 @@
                  name="openingDate"
                  placeholder="Enter opening date"
                  type="date" th:field="*{validityTerm}">
-          <!--          <p th:if="${#fields.hasErrors('date')}" class="text-danger" th:errors="*{date}"></p>-->
+          <p th:if="${#fields.hasErrors('validityTerm')}" class="text-danger" th:errors="*{date}"></p>
         </div>
         <div class="form-group mb-3">
           <label class="form-label">Rate:</label>
@@ -76,7 +76,7 @@
                  id="rate"
                  name="rate"
                  placeholder="Enter rate"
-                 type="number" th:field="*{rate}">
+                 type="number" step="0.01" th:field="*{rate}">
           <p th:if="${#fields.hasErrors('rate')}" class="text-danger" th:errors="*{rate}"></p>
         </div>
         <button class="btn btn-primary" type="submit">Submit</button>

@@ -45,7 +45,7 @@ public class Cosmetic {
     private Double rate;
 
     @Column(name = "applications_number")
-    private Integer applicationsNumber;
+    private Integer applicationsNumber = 0;
 
     @Column(name = "is_favourite")
     private Boolean isFavourite = false;

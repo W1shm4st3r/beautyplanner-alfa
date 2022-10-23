@@ -9,7 +9,9 @@ public interface CosmeticService {
     List<Cosmetic> getAllCosmetics();
     List<Cosmetic> getAllCosmeticsSortedByRate();
     List<Cosmetic> getAllCosmeticsSortedByType();
-    Cosmetic getCosmeticById(Long id);
-    void addToFavourites(Long id);
-    void removeFromFavourites(Long id);
+    Cosmetic getCosmeticById(Long cosmeticId);
+    void addToFavourites(Long cosmeticId);
+    void removeFromFavourites(Long cosmeticId);
+    void deleteCosmetic(Long cosmeticId);
+    void addCosmetic(CosmeticDto cosmeticDto);
 }

@@ -32,6 +32,7 @@
         <tr th:each="cosmetic, cosmeticStat : ${cosmetics}">
             <td th:text="${cosmeticStat.count}"></td>
             <td th:text="${cosmetic.name}"></td>
+            <td th:text="${cosmetic.applicationsNumber}"></td>
             <td th:text="${cosmetic.price}"></td>
             <td th:text="${cosmetic.destination.getDestination()}"></td>
             <td th:text="${cosmetic.type.getType()}"></td>

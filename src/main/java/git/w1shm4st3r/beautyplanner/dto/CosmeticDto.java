@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 @Getter
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class CosmeticDto {
     private Long id;
+    @NotEmpty(message = "Name cannot be empty")
     private String name;
     private Double price;
     private CosmeticDestination destination;
@@ -22,7 +24,7 @@ public class CosmeticDto {
     private LocalDate openingDate;
     private LocalDate validityTerm;
     private Double rate;
-    private Integer applicationsNumber;
+    private Integer applicationsNumber = 0;
     private Boolean isFavourite = false;
     private Boolean isUsedUp = false;
 }

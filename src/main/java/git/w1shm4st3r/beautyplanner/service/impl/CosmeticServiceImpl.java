@@ -40,8 +40,8 @@ public class CosmeticServiceImpl implements CosmeticService {
     }
 
     @Override
-    public Cosmetic getCosmeticById(Long id) {
-        return cosmeticRepository.findCosmeticById(id);
+    public Cosmetic getCosmeticById(Long cosmeticId) {
+        return cosmeticRepository.findCosmeticById(cosmeticId);
     }
 
     @Override
@@ -56,6 +56,17 @@ public class CosmeticServiceImpl implements CosmeticService {
         Cosmetic cosmeticToRemove = cosmeticRepository.findCosmeticById(cosmeticId);
         cosmeticToRemove.setIsFavourite(false);
         cosmeticRepository.save(cosmeticToRemove);
+    }
+
+    @Override
+    public void deleteCosmetic(Long cosmeticId) {
+        cosmeticRepository.deleteById(cosmeticId);
+    }
+
+    @Override
+    public void addCosmetic(CosmeticDto cosmeticDto) {
+        Cosmetic cosmetic = CosmeticMapper.mapToCosmetic(cosmeticDto);
+        cosmeticRepository.save(cosmetic);
     }
 
 //    public Cosmetic addCosmetic(Cosmetic cosmetic) {

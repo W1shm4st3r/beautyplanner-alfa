@@ -22,7 +22,7 @@ public class FavouritesController {
 
     @GetMapping("/favourites")
     public String getFavourites(Model model) {
-        List<Cosmetic> cosmetics = cosmeticService.getAllCosmetics();
+        List<Cosmetic> cosmetics = cosmeticService.getAllCosmeticsSortedByRate();
         List<Cosmetic> favourites = new ArrayList<>();
         for (Cosmetic cosmetic : cosmetics) {
             if (cosmetic.getIsFavourite()) {
