@@ -37,8 +37,8 @@ public class CosmeticServiceImpl implements CosmeticService {
     }
 
     @Override
-    public List<Cosmetic> getAllCosmeticsSortedByType() {
-        List<Cosmetic> cosmetics = cosmeticRepository.findAll(Sort.by(ASC, "type"));
+    public List<Cosmetic> getAllCosmeticsSortedByDestination() {
+        List<Cosmetic> cosmetics = cosmeticRepository.findAll(Sort.by(ASC, "destination"));
         List<Cosmetic> currentlyUsed = new ArrayList<>();
         for (Cosmetic cosmetic : cosmetics) {
             if (!cosmetic.getIsUsedUp()) {

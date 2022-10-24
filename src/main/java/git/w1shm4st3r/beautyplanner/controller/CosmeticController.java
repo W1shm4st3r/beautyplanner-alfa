@@ -26,7 +26,7 @@ public class CosmeticController {
 
     @GetMapping("/cosmetics")
     public String getCosmeticList(Model model) {
-        List<Cosmetic> cosmetics = cosmeticService.getAllCosmeticsSortedByType();
+        List<Cosmetic> cosmetics = cosmeticService.getAllCosmeticsSortedByDestination();
         model.addAttribute("cosmetics", cosmetics);
         return "cosmetic/cosmetics";
     }

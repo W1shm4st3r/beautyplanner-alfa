@@ -8,7 +8,7 @@ import java.util.List;
 public interface CosmeticService {
     List<Cosmetic> getAllCosmetics();
     List<Cosmetic> getAllCosmeticsSortedByRate();
-    List<Cosmetic> getAllCosmeticsSortedByType();
+    List<Cosmetic> getAllCosmeticsSortedByDestination();
     Cosmetic getCosmeticById(Long cosmeticId);
     void addToFavourites(Long cosmeticId);
     void removeFromFavourites(Long cosmeticId);

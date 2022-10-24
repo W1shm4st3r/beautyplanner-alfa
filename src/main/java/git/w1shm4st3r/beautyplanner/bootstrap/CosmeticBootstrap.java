@@ -1,10 +1,11 @@
 package git.w1shm4st3r.beautyplanner.bootstrap;
 
-import git.w1shm4st3r.beautyplanner.dto.CosmeticDto;
 import git.w1shm4st3r.beautyplanner.model.Cosmetic;
+import git.w1shm4st3r.beautyplanner.model.Ingredient;
 import git.w1shm4st3r.beautyplanner.model.enums.CosmeticDestination;
 import git.w1shm4st3r.beautyplanner.model.enums.CosmeticType;
 import git.w1shm4st3r.beautyplanner.repository.CosmeticRepository;
+import git.w1shm4st3r.beautyplanner.repository.IngredientRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -21,8 +22,11 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
 
     final CosmeticRepository cosmeticRepository;
 
-    public CosmeticBootstrap(CosmeticRepository cosmeticRepository) {
+    final IngredientRepository ingredientRepository;
+
+    public CosmeticBootstrap(CosmeticRepository cosmeticRepository, IngredientRepository ingredientRepository) {
         this.cosmeticRepository = cosmeticRepository;
+        this.ingredientRepository = ingredientRepository;
     }
 
     public List<Cosmetic> getCosmetics() {
@@ -89,11 +93,27 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
         return cosmetics;
     }
 
+    List<Ingredient> getIngredients() {
+        Ingredient ingredient = Ingredient.builder()
+                .name("Aqua")
+                .description("Water, base for cosmetics")
+                .build();
+
+        Ingredient ingredient1 = Ingredient.builder()
+                .name("Glycerin")
+                .description("Humectant, moisture")
+                .build();
+
+        return List.of(ingredient, ingredient1);
+    }
+
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
         cosmeticRepository.deleteAll();
         cosmeticRepository.saveAll(getCosmetics());
+        ingredientRepository.deleteAll();
+        ingredientRepository.saveAll(getIngredients());
         log.info("---Loading bootstrap data---");
     }
 }

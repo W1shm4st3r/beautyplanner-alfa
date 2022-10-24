@@ -9,6 +9,35 @@
 <body>
 <header th:replace="~{index :: header}"></header>
 </br></br></br>
-<h2 class="text-center">TO BE IMPLEMENTED</h2>
+<div class="container">
+  <div class="row">
+    <h1>Ingredients</h1>
+  </div>
+  <div class="row" align="right">
+    <strong><a class="btn btn-warning" th:href="@{/ingredients/new}">Add</a></strong>
+  </div>
+  </br>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ingredient, ingredientStat : ${ingredients}">
+      <td th:text="${ingredientStat.count}"></td>
+      <td th:text="${ingredient.name}"></td>
+      <td th:text="${ingredient.description}"></td>
+      <td>
+        <a class="btn btn-primary" th:href="@{/ingredients/{ingredientId}/edit(ingredientId=${ingredient.id})}">Edit</a>
+        <a class="btn btn-danger" th:href="@{/ingredients/{ingredientId}/delete(ingredientId=${ingredient.id})}">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 </body>
 </html>
