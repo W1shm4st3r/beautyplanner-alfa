@@ -41,7 +41,7 @@ public class CosmeticServiceImpl implements CosmeticService {
         List<Cosmetic> cosmetics = cosmeticRepository.findAll(Sort.by(ASC, "destination"));
         List<Cosmetic> currentlyUsed = new ArrayList<>();
         for (Cosmetic cosmetic : cosmetics) {
-            if (!cosmetic.getIsUsedUp()) {
+            if (!cosmetic.getIsUsedUp() && !cosmetic.getIsWished()) {
                 currentlyUsed.add(cosmetic);
             }
         }
@@ -75,6 +75,7 @@ public class CosmeticServiceImpl implements CosmeticService {
     @Override
     public void addCosmetic(CosmeticDto cosmeticDto) {
         Cosmetic cosmetic = CosmeticMapper.mapToCosmetic(cosmeticDto);
+        cosmetic.setIsWished(false);
         cosmeticRepository.save(cosmetic);
     }
 
@@ -91,7 +92,7 @@ public class CosmeticServiceImpl implements CosmeticService {
         List<Cosmetic> cosmetics = cosmeticRepository.findAll(Sort.by(DESC, "dateOfUsingUp"));
         List<Cosmetic> usedUpCosmetics = new ArrayList<>();
         for (Cosmetic cosmetic : cosmetics) {
-            if (cosmetic.getIsUsedUp()) {
+            if (cosmetic.getIsUsedUp() && !cosmetic.getIsWished()) {
                 usedUpCosmetics.add(cosmetic);
             }
         }
@@ -127,22 +128,37 @@ public class CosmeticServiceImpl implements CosmeticService {
         cosmeticRepository.save(CosmeticMapper.mapToCosmetic(cosmetic));
     }
 
-//    public Cosmetic addCosmetic(Cosmetic cosmetic) {
-//        return cosmeticRepository.save(cosmetic);
-//    }
-//
-//    public Cosmetic updateCosmetic(Cosmetic cosmetic) {
-//        return cosmeticRepository.save(cosmetic);
-//    }
-//
-//    @Transactional
-//    public void deleteCosmeticById(Long id) {
-//        cosmeticRepository.deleteById(id);
-//    }
-//
-//    @Transactional
-//    public void deleteAll() {
-//        cosmeticRepository.deleteAll();
-//    }
+    @Override
+    public List<Cosmetic> getWished() {
+        List<Cosmetic> cosmetics = cosmeticRepository.findAll(Sort.by(ASC, "destination"));
+        List<Cosmetic> wishedCosmetics = new ArrayList<>();
+        for (Cosmetic cosmetic : cosmetics) {
+            if (cosmetic.getIsWished()) {
+                wishedCosmetics.add(cosmetic);
+            }
+        }
+        return wishedCosmetics;
+    }
+
+    @Override
+    public void addWishedCosmetic(CosmeticDto cosmeticDto) {
+        Cosmetic cosmetic = CosmeticMapper.mapToCosmetic(cosmeticDto);
+        cosmetic.setIsWished(true);
+        cosmeticRepository.save(cosmetic);
+    }
+
+    @Override
+    public void moveWishedToCollection(Long cosmeticId) {
+        Cosmetic boughtCosmetic = cosmeticRepository.findCosmeticById(cosmeticId);
+        boughtCosmetic.setIsWished(false);
+        cosmeticRepository.save(boughtCosmetic);
+    }
+
+    @Override
+    public void moveToWishList(Long cosmeticId) {
+        Cosmetic cosmetic = cosmeticRepository.findCosmeticById(cosmeticId);
+        cosmetic.setIsWished(true);
+        cosmeticRepository.save(cosmetic);
+    }
 
 }

@@ -55,4 +55,7 @@ public class Cosmetic {
 
     @Column(name = "date_of_using_up")
     private LocalDate dateOfUsingUp;
+
+    @Column(name = "is_wished")
+    private Boolean isWished = false;
 }

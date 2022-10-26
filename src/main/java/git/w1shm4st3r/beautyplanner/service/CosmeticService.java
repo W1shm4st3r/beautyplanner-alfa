@@ -20,4 +20,8 @@ public interface CosmeticService {
     void increaseApplications(Long cosmeticId);
     void decreaseApplications(Long cosmeticId);
     void updateCosmetic(CosmeticDto cosmetic);
+    List<Cosmetic> getWished();
+    void addWishedCosmetic(CosmeticDto cosmeticDto);
+    void moveWishedToCollection(Long cosmeticId);
+    void moveToWishList(Long cosmeticId);
 }

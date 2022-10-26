@@ -18,7 +18,8 @@ public class CosmeticMapper {
                 cosmetic.getApplicationsNumber(),
                 cosmetic.getIsFavourite(),
                 cosmetic.getIsUsedUp(),
-                cosmetic.getDateOfUsingUp()
+                cosmetic.getDateOfUsingUp(),
+                cosmetic.getIsWished()
         );
     }
 
@@ -35,7 +36,8 @@ public class CosmeticMapper {
                 cosmeticDto.getApplicationsNumber(),
                 cosmeticDto.getIsFavourite(),
                 cosmeticDto.getIsUsedUp(),
-                cosmeticDto.getDateOfUsingUp()
+                cosmeticDto.getDateOfUsingUp(),
+                cosmeticDto.getIsWished()
         );
     }
 

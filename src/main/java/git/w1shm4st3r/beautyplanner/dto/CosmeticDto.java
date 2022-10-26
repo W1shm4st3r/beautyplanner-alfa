@@ -28,4 +28,5 @@ public class CosmeticDto {
     private Boolean isFavourite = false;
     private Boolean isUsedUp = false;
     private LocalDate dateOfUsingUp;
+    private Boolean isWished = false;
 }

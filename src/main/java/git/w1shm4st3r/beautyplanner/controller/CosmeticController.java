@@ -108,4 +108,10 @@ public class CosmeticController {
         return "cosmetic/view-cosmetic";
     }
 
+    @GetMapping("/cosmetics/{cosmeticId}/moveToWishList")
+    public String moveToWishList(@PathVariable("cosmeticId") Long cosmeticId) {
+        cosmeticService.moveToWishList(cosmeticId);
+        return "redirect:/cosmetics";
+    }
+
 }

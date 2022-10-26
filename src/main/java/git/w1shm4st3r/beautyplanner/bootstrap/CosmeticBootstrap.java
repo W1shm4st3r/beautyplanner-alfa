@@ -43,6 +43,7 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .rate(8.5)
                 .isFavourite(false)
                 .isUsedUp(false)
+                .isWished(false)
                 .build();
 
         Cosmetic cosmetic1 = Cosmetic.builder()
@@ -56,6 +57,7 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .rate(6.5)
                 .isFavourite(true)
                 .isUsedUp(false)
+                .isWished(false)
                 .build();
 
         Cosmetic cosmetic2 = Cosmetic.builder()
@@ -69,6 +71,7 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .rate(9.37)
                 .isFavourite(false)
                 .isUsedUp(false)
+                .isWished(false)
                 .build();
 
         Cosmetic cosmetic3 = Cosmetic.builder()
@@ -82,13 +85,24 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .rate(8.0)
                 .isFavourite(true)
                 .isUsedUp(false)
+                .isWished(false)
                 .build();
 
+        Cosmetic cosmeticToBuy = Cosmetic.builder()
+                .name("Mydło")
+                .destination(CosmeticDestination.BODY)
+                .type(CosmeticType.CLEANER)
+                .isUsedUp(false)
+                .isFavourite(false)
+                .price(17.99)
+                .isWished(true)
+                .build();
 
         cosmetics.add(cosmetic);
         cosmetics.add(cosmetic1);
         cosmetics.add(cosmetic2);
         cosmetics.add(cosmetic3);
+        cosmetics.add(cosmeticToBuy);
 
         return cosmetics;
     }
