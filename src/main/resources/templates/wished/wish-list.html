@@ -36,8 +36,8 @@
             <td th:text="${cosmetic.destination.getDestination()}"></td>
             <td th:text="${cosmetic.type.getType()}"></td>
             <td>
-                <a class="btn btn-primary" th:href="@{/wishList/{cosmeticId}/edit(cosmeticId=${cosmetic.id})}">Edit</a>
-                <a class="btn btn-danger" th:href="@{/wishList/{cosmeticId}/delete(cosmeticId=${cosmetic.id})}">Delete</a>
+                <a class="btn btn-primary" th:href="@{/wishList/{cosmeticId}/editWished(cosmeticId=${cosmetic.id})}">Edit</a>
+                <a class="btn btn-danger" th:href="@{/wishList/{cosmeticId}/deleteFromWishList(cosmeticId=${cosmetic.id})}">Delete</a>
                 <a class="btn btn-secondary" th:href="@{/wishList/{cosmeticId}/moveToCollection(cosmeticId=${cosmetic.id})}">Bought</a>
             </td>
         </tr>

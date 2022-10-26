@@ -55,4 +55,33 @@ public class WishListController {
         return "redirect:/wishList";
     }
 
+    @GetMapping("/wishList/{cosmeticId}/deleteFromWishList")
+    public String deleteFromWishList(@PathVariable("cosmeticId") Long cosmeticId) {
+        cosmeticService.deleteCosmetic(cosmeticId);
+        return "redirect:/wishList";
+    }
+
+    @GetMapping("/wishList/{cosmeticId}/editWished")
+    public String getEditWishedForm(@PathVariable("cosmeticId") Long cosmeticId, Model model) {
+        Cosmetic cosmetic = cosmeticService.getCosmeticById(cosmeticId);
+        model.addAttribute("cosmetic", cosmetic);
+        return "wished/edit-wished";
+    }
+
+    @PostMapping("/wishList/{cosmeticId}/updateWished")
+    public String updateWished(@PathVariable("cosmeticId") Long cosmeticId, @Valid @ModelAttribute CosmeticDto cosmetic,
+                               BindingResult result, Model model) {
+        Cosmetic cosmeticToEdit = cosmeticService.getCosmeticById(cosmeticId);
+        if (result.hasErrors()) {
+            model.addAttribute("wishedToEdit", cosmetic);
+            return "wished/edit-wished";
+        }
+        cosmetic.setId(cosmeticId);
+        cosmetic.setIsUsedUp(cosmeticToEdit.getIsUsedUp());
+        cosmetic.setIsFavourite(cosmeticToEdit.getIsFavourite());
+        cosmetic.setIsWished(cosmeticToEdit.getIsWished());
+        cosmeticService.updateCosmetic(cosmetic);
+        return "redirect:/wishList";
+    }
+
 }

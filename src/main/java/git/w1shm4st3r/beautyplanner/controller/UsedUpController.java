@@ -67,6 +67,7 @@ public class UsedUpController {
         cosmetic.setId(cosmeticId);
         cosmetic.setIsFavourite(cosmeticToEdit.getIsFavourite());
         cosmetic.setIsUsedUp(cosmeticToEdit.getIsUsedUp());
+        cosmetic.setIsWished(cosmeticToEdit.getIsWished());
         cosmeticService.updateCosmetic(cosmetic);
         return "redirect:/usedUp";
     }

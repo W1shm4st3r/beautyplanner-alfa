@@ -24,4 +24,5 @@ public interface CosmeticService {
     void addWishedCosmetic(CosmeticDto cosmeticDto);
     void moveWishedToCollection(Long cosmeticId);
     void moveToWishList(Long cosmeticId);
+//    void updateWished(CosmeticDto wishedToEdit);
 }

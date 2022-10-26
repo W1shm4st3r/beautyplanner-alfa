@@ -161,4 +161,9 @@ public class CosmeticServiceImpl implements CosmeticService {
         cosmeticRepository.save(cosmetic);
     }
 
+//    @Override
+//    public void updateWished(CosmeticDto wishedToEdit) {
+//        cosmeticRepository.save(CosmeticMapper.mapToCosmetic(wishedToEdit));
+//    }
+
 }
