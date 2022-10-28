@@ -63,7 +63,7 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
         Cosmetic cosmetic2 = Cosmetic.builder()
                 .name("Maseczka")
                 .applicationsNumber(0)
-                .price(21.37)
+                .price(21.99)
                 .destination(CosmeticDestination.FACE)
                 .type(CosmeticType.MASK)
                 .openingDate(LocalDate.now())
@@ -88,6 +88,21 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .isWished(false)
                 .build();
 
+        Cosmetic usedUpCosmetic = Cosmetic.builder()
+                .name("Zużyty kosmetyk")
+                .applicationsNumber(0)
+                .price(19.99)
+                .destination(CosmeticDestination.MAKEUP)
+                .type(CosmeticType.CLEANER)
+                .openingDate(LocalDate.now())
+                .validityTerm(LocalDate.of(2023, 10, 1))
+                .dateOfUsingUp(LocalDate.of(2022, 6, 26))
+                .rate(8.0)
+                .isFavourite(true)
+                .isUsedUp(true)
+                .isWished(false)
+                .build();
+
         Cosmetic cosmeticToBuy = Cosmetic.builder()
                 .name("Mydło")
                 .destination(CosmeticDestination.BODY)
@@ -102,6 +117,7 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
         cosmetics.add(cosmetic1);
         cosmetics.add(cosmetic2);
         cosmetics.add(cosmetic3);
+        cosmetics.add(usedUpCosmetic);
         cosmetics.add(cosmeticToBuy);
 
         return cosmetics;
