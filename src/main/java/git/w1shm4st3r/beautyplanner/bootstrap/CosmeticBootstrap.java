@@ -107,6 +107,7 @@ public class CosmeticBootstrap implements ApplicationListener<ContextRefreshedEv
                 .name("Mydło")
                 .destination(CosmeticDestination.BODY)
                 .type(CosmeticType.CLEANER)
+                .applicationsNumber(0)
                 .isUsedUp(false)
                 .isFavourite(false)
                 .price(17.99)
